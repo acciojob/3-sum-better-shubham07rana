@@ -1,16 +1,20 @@
-function threeSum(arr, target) {
-    arr.sort((a, b) => a - b); // Sort the array in ascending order
+function threeSum(nums, target) {
+    if (nums.length < 3) {
+        return null; // There are not enough elements to form a triplet
+    }
+
+    nums.sort((a, b) => a - b); // Sort the array in ascending order
 
     let closestSum = Infinity;
 
-    for (let i = 0; i < arr.length - 2; i++) {
+    for (let i = 0; i < nums.length - 2; i++) {
         let left = i + 1;
-        let right = arr.length - 1;
+        let right = nums.length - 1;
 
         while (left < right) {
-            const sum = arr[i] + arr[left] + arr[right];
+            const sum = nums[i] + nums[left] + nums[right];
 
-            if (Math.abs(target - sum) < Math.abs(target - closestSum)) {
+            if (Math.abs(sum - target) < Math.abs(closestSum - target)) {
                 closestSum = sum;
             }
 
@@ -24,4 +28,10 @@ function threeSum(arr, target) {
 
     return closestSum;
 }
+
+// Test the function
+const nums = [-1, 2, 1, -4];
+const target = 1;
+const result = threeSum(nums, target);
+console.log(result); // Output should be 2
 
